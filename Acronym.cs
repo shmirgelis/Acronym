@@ -10,11 +10,9 @@ public static class Acronym
         string acronym = "";
         foreach (string word in words)
         {
-            if (word == "")   // cia turbut galima sutrumpint if statementa, bet nebepamenu kaip :)
+            if (word != "")
             {
-            }
-            else
-            {
+                Console.WriteLine(word);
                 acronym += word[0].ToString().ToUpper();
             }
         }
