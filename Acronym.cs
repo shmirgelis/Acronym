@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Linq;
 
 public static class Acronym
 {
@@ -8,13 +8,13 @@ public static class Acronym
         char[] delimitterChars = { ' ', ',', '.', '-', '_' };
         string[] words = phrase.Split(delimitterChars);
         string acronym = "";
-        foreach (string word in words)
+        
+        var firstLetters = words.Where(w => !String.IsNullOrEmpty(w))
+                                .Select(w => w.ElementAt(0));
+
+        foreach (char letter in firstLetters)
         {
-            if (word != "")
-            {
-                Console.WriteLine(word);
-                acronym += word[0].ToString().ToUpper();
-            }
+            acronym += Char.ToUpper(letter);
         }
         return acronym;
     }
