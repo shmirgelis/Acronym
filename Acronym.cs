@@ -7,15 +7,11 @@ public static class Acronym
     {
         char[] delimitterChars = { ' ', ',', '.', '-', '_' };
         string[] words = phrase.Split(delimitterChars);
-        string acronym = "";
-        
-        var firstLetters = words.Where(w => !String.IsNullOrEmpty(w))
-                                .Select(w => w.ElementAt(0));
 
-        foreach (char letter in firstLetters)
-        {
-            acronym += Char.ToUpper(letter);
-        }
-        return acronym;
+        var firstLetters = words.Where(w => !String.IsNullOrEmpty(w))
+                                .Select(w => w.ElementAt(0).ToString())
+                                .Aggregate((w1, w2) => $"{w1.ToUpper()}{w2.ToUpper()}");
+
+        return firstLetters;
     }
 }
