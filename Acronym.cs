@@ -8,10 +8,8 @@ public static class Acronym
         char[] delimitterChars = { ' ', ',', '.', '-', '_' };
         string[] words = phrase.Split(delimitterChars);
 
-        var firstLetters = words.Where(w => !String.IsNullOrEmpty(w))
-                                .Select(w => w.ElementAt(0).ToString())
-                                .Aggregate((w1, w2) => $"{w1.ToUpper()}{w2.ToUpper()}");
-
-        return firstLetters;
+        return words.Where(word => !String.IsNullOrEmpty(word))
+                                          .Select(word => word[0].ToString().ToUpper())
+                                          .Aggregate((abbr, currentLetter) => abbr += currentLetter);
     }
 }
